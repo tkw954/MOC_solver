@@ -48,7 +48,7 @@ N_t=N_x*N_cycles*2;%number of time points
 p_IC=0;%(Pa) initial pressure throughout
 q_IC=0;%(m^3/s) initial flow throughout
 
-p_BC=[1e6 0];%(Pa) pressure boundary conditions (nan if flow or RL BC)
+p_BC=[1e6 nan];%(Pa) pressure boundary conditions (nan if flow or RL BC)
 q_BC=[nan nan];%(m^3/s) flow boundary conditions (nan if pressure or RL BC)
 %RL_BC=[nan nan];%(Pa/(m^3/s) resistive boundary condition (set below)
 
