@@ -26,7 +26,7 @@ q_IC=0;%(m^3/s) initial flow throughout
 
 p_BC=[1e6 nan];%(Pa) pressure boundary conditions (nan if flow or RL BC)
 q_BC=[nan 0];%(m^3/s) flow boundary conditions (nan if pressure or RL BC)
-
+R_BC=[nan nan];%(Pa/(m^3/s) resistive bounary condition (nan if P or Q BC)
 
 
 %% friction
@@ -41,7 +41,7 @@ q_BC=[nan 0];%(m^3/s) flow boundary conditions (nan if pressure or RL BC)
 
 
 %solve
-[ p, q, y ] =  MOCsolverF(x, t, p_IC, q_IC, p_BC, q_BC, Zc, r, nu, n, m  );
+[ p, q, y ] =  MOCsolverR(x, t, p_IC, q_IC, p_BC, q_BC, R_BC, Zc, r, nu, n, m  );
 
 
 

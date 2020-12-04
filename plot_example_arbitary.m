@@ -51,49 +51,12 @@ q_IC=0;%(m^3/s) initial flow throughout
 
 p_BC=[1e6 0];%(Pa) pressure boundary conditions (nan if flow BC)
 q_BC=[nan nan];%(m^3/s) flow boundary conditions (nan if pressure BC)
-
+R_BC=[nan nan];%(Pa/(m^3/s) resistive bounary condition (nan if P or Q BC)
 
 
 e=@(x) interp1(x_e,e_x,x,'pchip');%interp is slow, is there a faster method?
 r=@(x) OD/2-e(x);
 c=@(x) sqrt(K./rho./(1+alpha*2*K/E*r(x)./e(x)));%(m/s) wave speed function
-
-
-
-
-
-
-%% friction
-%steady only
-% n=0;
-% m=0;
-
-%Trikha
-% n=[26.4 200 8000];
-% m=[1.0 8.1 40.0];
-
-%Johnston 2006
-beta_f=2;
-m1=1.4064;
-m2=2.5200;
-n1=33.104;
-r_approx=(r(0)+r(L))/2;
-dt_approx=1.4e-3;
-k=ceil((2*log(r_approx)-log(n1*nu*dt_approx))/(2*log(beta_f)));
-
-m=nan(k,1);
-n=nan(k,1);
-m(1)=m1;
-m(2)=m2;
-n(1)=n1;
-
-for i=3:k
-    m(i)=beta_f*m(i-1);
-end
-
-for i=2:k
-    n(i)=beta_f^2*n(i-1);
-end
 
 
 %% solve MOC solution
@@ -103,7 +66,7 @@ end
 
 tic
 %solve
-[ p, q, y ] =  MOCsolverF(x, t, p_IC, q_IC, p_BC, q_BC, Zc, r, nu, n, m  );
+[ p, q, y ] =  MOCsolverR(x, t, p_IC, q_IC, p_BC, q_BC, R_BC, Zc, r, nu );
 dt=toc;
 
 %% steady resistance

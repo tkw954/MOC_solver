@@ -1,4 +1,4 @@
-function [ p, q, y ] = MOCsolverR_vectorize(x, t, p_IC, q_IC, p_BC, q_BC, R_BC, Zc, r, nu, n, m  )
+function [ p, q, y ] = MOCsolverR(x, t, p_IC, q_IC, p_BC, q_BC, R_BC, Zc, r, nu, n, m  )
 %[ p, q ] = MOCsolverF(x, t, p_IC, q_IC, p_BC, q_BC, R_BC, Zc, r, nu, n, m  )
 %   Method of characteristics pipeline dynamics solver, following Johnston,
 %   2006 and 2014
